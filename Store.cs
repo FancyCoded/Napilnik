@@ -14,19 +14,19 @@ class Program
 
         warehouse.Delive(iPhone12, 10);
         warehouse.Delive(iPhone11, 1);
-
+        
+        //Р’С‹РІРѕРґ РІСЃРµС… С‚РѕРІР°СЂРѕРІ РЅР° СЃРєР»Р°РґРµ СЃ РёС… РѕСЃС‚Р°С‚РєРѕРј
         warehouse.DisplayStorage();
-        //Вывод всех товаров на складе с их остатком
 
         Cart cart = shop.Cart();
         cart.Add(iPhone12, 4);
-        cart.Add(iPhone11, 3); //при такой ситуации возникает ошибка так, как нет нужного количества товара на складе
+        cart.Add(iPhone11, 3); //РїСЂРё С‚Р°РєРѕР№ СЃРёС‚СѓР°С†РёРё РІРѕР·РЅРёРєР°РµС‚ РѕС€РёР±РєР° С‚Р°Рє, РєР°Рє РЅРµС‚ РЅСѓР¶РЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° С‚РѕРІР°СЂР° РЅР° СЃРєР»Р°РґРµ
 
+        //Р’С‹РІРѕРґ РІСЃРµС… С‚РѕРІР°СЂРѕРІ РІ РєРѕСЂР·РёРЅРµ
         cart.Display();
-        //Вывод всех товаров в корзине
-
+        
         Console.WriteLine(cart.Order().Paylink);
-        cart.Add(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
+        cart.Add(iPhone12, 9); //РћС€РёР±РєР°, РїРѕСЃР»Рµ Р·Р°РєР°Р·Р° СЃРѕ СЃРєР»Р°РґР° СѓР±РёСЂР°СЋС‚СЃСЏ Р·Р°РєР°Р·Р°РЅРЅС‹Рµ С‚РѕРІР°СЂС‹
 
         warehouse.DisplayStorage();
     }
@@ -48,7 +48,7 @@ class Cart
     {
         if (_shop.Goods[good] < count)
         {
-            Console.WriteLine($"На складе нет {good.Name} в количесвте - {count} шт");
+            Console.WriteLine($"РќР° СЃРєР»Р°РґРµ РЅРµС‚ {good.Name} РІ РєРѕР»РёС‡РµСЃРІС‚Рµ - {count} С€С‚");
             return;
         }
 
@@ -63,7 +63,7 @@ class Cart
     public void Display()
     {
         foreach (var good in _goods)
-            Console.WriteLine($"{good.Key.Name} - {good.Value} шт");
+            Console.WriteLine($"{good.Key.Name} - {good.Value} С€С‚");
     }
 }
 
@@ -103,7 +103,7 @@ class Warehouse : IReadOnlyWarehouse
     public void DisplayStorage()
     {
         foreach (var good in _goods)
-            Console.WriteLine($"{good.Key.Name} - {good.Value} шт");
+            Console.WriteLine($"{good.Key.Name} - {good.Value} С€С‚");
     }
 }
 
