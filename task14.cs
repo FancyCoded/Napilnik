@@ -7,12 +7,12 @@ class Program
     {
         Dictionary<int, IPaymentSystem> paymentSystems = new Dictionary<int, IPaymentSystem>();
 
-        PaymentSystemFabric paymentSystemFabric = new PaymentSystemFabric();
+        PaymentSystemFactory paymentSystemFactory = new PaymentSystemFactory();
         IPaymentHandler paymentHandler = new PaymentHandler();
 
-        PaymentSystem qiwi = paymentSystemFabric.Create(1, "QIWI");
-        PaymentSystem webMoney = paymentSystemFabric.Create(2, "WebMoney");
-        PaymentSystem card = paymentSystemFabric.Create(3, "Card");
+        PaymentSystem qiwi = paymentSystemFactory.Create(1, "QIWI");
+        PaymentSystem webMoney = paymentSystemFactory.Create(2, "WebMoney");
+        PaymentSystem card = paymentSystemFactory.Create(3, "Card");
 
         paymentSystems.Add(qiwi.SystemId, qiwi);
         paymentSystems.Add(webMoney.SystemId, webMoney);
@@ -71,7 +71,7 @@ public class PaymentHandler : IPaymentHandler
     }
 }
 
-public class PaymentSystemFabric : IPaymentSystemFabric
+public class PaymentSystemFactory : IPaymentSystemFactory
 {
     public PaymentSystem Create(int systemId, string name) =>
         new PaymentSystem(systemId, name);
@@ -83,7 +83,7 @@ public interface IPaymentSystem
     string Name { get; }
 }
 
-public interface IPaymentSystemFabric
+public interface IPaymentSystemFactory
 {
     PaymentSystem Create(int systemId, string name);
 }
