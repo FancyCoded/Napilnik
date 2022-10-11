@@ -1,8 +1,8 @@
-private void OnCheckButtonClicked(object sender, EventArgs e)
+п»їprivate void OnCheckButtonClicked(object sender, EventArgs e)
 {
     if (this.passportTextbox.Text.Trim() == string.Empty)
     {
-        int massageBox = (int)MessageBox.Show("Введите серию и номер паспорта");
+        int massageBox = (int)MessageBox.Show("Р’РІРµРґРёС‚Рµ СЃРµСЂРёСЋ Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°");
         return;
     }
 
@@ -11,7 +11,7 @@ private void OnCheckButtonClicked(object sender, EventArgs e)
 
     if (rawData.Length < correctDataLength)
     {
-        this.textResult.Text = "Неверный формат серии или номера паспорта";
+        this.textResult.Text = "РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ СЃРµСЂРёРё РёР»Рё РЅРѕРјРµСЂР° РїР°СЃРїРѕСЂС‚Р°";
         return;
     }
 
@@ -38,7 +38,7 @@ private void FindPassportInDataTable(SQLiteConnection connection)
     
     if (dataTable.Rows.Count < 0)
     {
-        this.textResult.Text = "Паспорт «" + this.passportTextbox.Text + "» в списке участников дистанционного голосования НЕ НАЙДЕН";
+        this.textResult.Text = "РџР°СЃРїРѕСЂС‚ В«" + this.passportTextbox.Text + "В» РІ СЃРїРёСЃРєРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РґРёСЃС‚Р°РЅС†РёРѕРЅРЅРѕРіРѕ РіРѕР»РѕСЃРѕРІР°РЅРёСЏ РќР• РќРђР™Р”Р•Рќ";
         return;
     }
 
@@ -48,9 +48,9 @@ private void FindPassportInDataTable(SQLiteConnection connection)
 private void SetResult()
 {
     if (Convert.ToBoolean(dataTable.Rows[0].ItemArray[1]))
-        this.textResult.Text = "По паспорту «" + this.passportTextbox.Text + "» доступ к бюллетеню на дистанционном электронном голосовании ПРЕДОСТАВЛЕН";
+        this.textResult.Text = "РџРѕ РїР°СЃРїРѕСЂС‚Сѓ В«" + this.passportTextbox.Text + "В» РґРѕСЃС‚СѓРї Рє Р±СЋР»Р»РµС‚РµРЅСЋ РЅР° РґРёСЃС‚Р°РЅС†РёРѕРЅРЅРѕРј СЌР»РµРєС‚СЂРѕРЅРЅРѕРј РіРѕР»РѕСЃРѕРІР°РЅРёРё РџР Р•Р”РћРЎРўРђР’Р›Р•Рќ";
     else
-        this.textResult.Text = "По паспорту «" + this.passportTextbox.Text + "» доступ к бюллетеню на дистанционном электронном голосовании НЕ ПРЕДОСТАВЛЯЛСЯ";
+        this.textResult.Text = "РџРѕ РїР°СЃРїРѕСЂС‚Сѓ В«" + this.passportTextbox.Text + "В» РґРѕСЃС‚СѓРї Рє Р±СЋР»Р»РµС‚РµРЅСЋ РЅР° РґРёСЃС‚Р°РЅС†РёРѕРЅРЅРѕРј СЌР»РµРєС‚СЂРѕРЅРЅРѕРј РіРѕР»РѕСЃРѕРІР°РЅРёРё РќР• РџР Р•Р”РћРЎРўРђР’Р›РЇР›РЎРЇ";
 }
 
 private void TryHandle(SQLiteException exception)
@@ -60,5 +60,5 @@ private void TryHandle(SQLiteException exception)
     if (exeption.ErrorCode != errorCode)
         return;
 
-    int massageBox = (int)MessageBox.Show("Файл db.sqlite не найден. Положите файл в папку вместе с exe.");
+    int massageBox = (int)MessageBox.Show("Р¤Р°Р№Р» db.sqlite РЅРµ РЅР°Р№РґРµРЅ. РџРѕР»РѕР¶РёС‚Рµ С„Р°Р№Р» РІ РїР°РїРєСѓ РІРјРµСЃС‚Рµ СЃ exe.");
 }
