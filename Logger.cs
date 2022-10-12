@@ -9,7 +9,7 @@ class Program
         Pathfinder pathfinder2 = new Pathfinder(new ConsoleLogger());
         Pathfinder pathfinder3 = new Pathfinder(new FridayLogger(new ConsoleLogger()));
         Pathfinder pathfinder4 = new Pathfinder(new FridayLogger(new FileLogger()));
-        Pathfinder pathfinder5 = new Pathfinder(new ChainOfLogger(new ILogger[] { new ConsoleLogger(), new FridayLogger(new FileLogger()) }));
+        Pathfinder pathfinder5 = new Pathfinder(new Loggers(new ILogger[] { new ConsoleLogger(), new FridayLogger(new FileLogger()) }));
     }
 }
 
@@ -18,11 +18,11 @@ interface ILogger
     public abstract void Log(string massage);
 }
 
-class ChainOfLogger : ILogger
+class Loggers : ILogger
 {
     private ILogger[] _loggers;
 
-    public ChainOfLogger(ILogger[] loggers) => _loggers = loggers;
+    public Loggers(ILogger[] loggers) => _loggers = loggers;
 
     public void Log(string massage)
     {
